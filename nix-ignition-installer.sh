@@ -10,7 +10,7 @@
 
 #ensure root user is being used
 if [ $EUID -ne 0 ]; then
-	echo "This script must be run as root"
+	echo "This script must be run as root."
 	exit 1
 fi
 
@@ -40,10 +40,10 @@ printf " [passed]\n"
 printf "Installing OpenJDK 7 JRE (version 1.8.0):\n"
 yum install -y java-1.8.0-openjdk
 
-#add ignition user
-printf "Adding ignition user.\n"
-adduser ignition
-passwd -d ignition
+# #add ignition user
+# printf "Adding ignition user.\n"
+# adduser ignition
+# passwd -d ignition
 
 #install ignition
 printf "Downloading Ignition installer:\n"
