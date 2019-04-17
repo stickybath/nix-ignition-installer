@@ -34,6 +34,11 @@ printf " [passed]\n"
 printf "Installing OpenJDK 7 JRE (version 1.8.0):\n"
 sudo yum install -y java-1.8.0-openjdk
 
+#add ignition user
+printf ("Adding ignition user")
+sudo adduser ignition
+sudo passwd -d ignition
+
 #install ignition
 printf "Downloading Ignition installer:\n"
 cmd="$(curl -o ignition-installer.run ${ignitionUrl})"
@@ -53,13 +58,14 @@ sudo systemctl enable postgresql
 
 #configure PostgreSQL
 sudo passwd postgres
-echo "Enter postgres database user password:"
+printf "Enter postgres database user password: "
 read -s password
 sudo su - postgres -c "psql -d template1 -c \"ALTER USER postgres WITH PASSWORD '$password';\""
 sudo su - postgres -c "psql -c \"CREATE DATABASE ignition OWNER postgres\""
 
 #prompt user to show ip address:
-echo "Using a web browser navigate to the ip address shown below:"
+printf "Using a web browser navigate to the ip address shown below with port 8088. "
+printf "(e.g. \"http://OCT0.OCT1.OCT2.OCT3:8088\"):\n"
 ip addr show | grep -v "inet6" | grep -v "127.0.0.1" | grep --color=never inet 
 
 
