@@ -37,7 +37,7 @@ sudo yum install -y java-1.8.0-openjdk
 #add ignition user
 printf "Adding ignition user.\n"
 sudo adduser ignition
-sudo passwd -d ignition
+sudo passwd ignition
 
 #install ignition
 printf "Downloading Ignition installer:\n"
