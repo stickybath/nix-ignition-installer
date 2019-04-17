@@ -52,10 +52,15 @@ systemctl start postgresql
 systemctl enable postgresql
 
 #configure PostgreSQL
-passwd postgres
+sudo passwd postgres
 echo "Enter postgres database user password:"
 read -s password
 su - postgres -c "psql -d template1 -c \"ALTER USER postgres WITH PASSWORD '$password';\""
-su - postgres -c "psql createdb ignition -o postgres"
+su - postgres -c "psql -c \"CREATE DATABASE ignition OWNER postgres\""
+
+#prompt user to show ip address:
+echo "Using a web browser navigate to the ip address shown below:"
+ip addr show | grep -v "inet 6" | grep -v "127.0.0.1" | grep --color=never inet 
+
 
 #https://support.plesk.com/hc/en-us/articles/115003321434-How-to-enable-remote-access-to-PostgreSQL-server-
