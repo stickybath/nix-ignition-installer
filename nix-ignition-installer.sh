@@ -45,7 +45,7 @@ cmd="$(curl -o ignition-installer.run ${ignitionUrl})"
 echo $cmd
 printf "Running Ignition installer\n:"
 chmod +x ./ignition-installer.run
-sudo ./ignition-installer.run --mode unattended --prefix /usr/local/bin/ignition --serviceuser ignition --unattendedmodeui none
+sudo su - ignition -c "./ignition-installer.run --mode unattended --prefix /usr/local/bin/ignition --serviceuser ignition --unattendedmodeui none"
 sudo chown -R ignition:ignition /usr/local/bin/ignition
 sudo /etc/init.d/ignition installstart
 
