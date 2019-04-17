@@ -52,17 +52,18 @@ chown -R ignition:ignition /usr/local/bin/ignition
 
 #install PostgreSQL
 printf "Installing PostgreSQL:\n"
-install -y postgresql-server
+yum install -y postgresql-server
 postgresql-setup initdb
 systemctl start postgresql
 systemctl enable postgresql
 
 #configure PostgreSQL
-sudo passwd postgres
+useradd postgres
+passwd postgres
 printf "Enter postgres database user password: "
 read -s password
-sudo su - postgres -c "psql -d template1 -c \"ALTER USER postgres WITH PASSWORD '$password';\""
-sudo su - postgres -c "psql -c \"CREATE DATABASE ignition OWNER postgres\""
+su - postgres -c "psql -d template1 -c \"ALTER USER postgres WITH PASSWORD '$password';\""
+su - postgres -c "psql -c \"CREATE DATABASE ignition OWNER postgres\""
 
 #prompt user to show ip address:
 printf "Using a web browser navigate to the ip address shown below with port 8088. "
