@@ -35,7 +35,7 @@ printf "Installing OpenJDK 7 JRE (version 1.8.0):\n"
 sudo yum install -y java-1.8.0-openjdk
 
 #add ignition user
-printf ("Adding ignition user\n")
+printf "Adding ignition user.\n"
 sudo adduser ignition
 sudo passwd -d ignition
 
