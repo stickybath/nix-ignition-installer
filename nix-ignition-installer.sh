@@ -26,7 +26,7 @@ firewall-cmd --zone=public --permanent --add-port=5432/tcp
 #disable SELinux
 printf "checking if SELinux is disabled..."
 cmd="$(getenforce)"
-if [ "$cmd" -eq "Enforcing" ]; then
+if [ "$cmd" == "Enforcing" ]; then
     printf " [failed]\n"
     printf "SELinux shall be disabled and the server shall be rebooted.\n"
     printf "re-run this script after reboot completes.\n"
