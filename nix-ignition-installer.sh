@@ -56,6 +56,6 @@ passwd postgres
 echo "Enter postgres database user password:"
 read -s password
 su - postgres -c "psql -d template1 -c \"ALTER USER postgres WITH PASSWORD '$password';\""
-su - postgres -c "psql createdb ignition -O postgres"
+su - postgres -c "psql createdb ignition -o postgres"
 
 #https://support.plesk.com/hc/en-us/articles/115003321434-How-to-enable-remote-access-to-PostgreSQL-server-
